@@ -2,6 +2,7 @@ package demo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -37,7 +38,13 @@ public class MathGame {
         if (sb.charAt(sb.length() - 1) == '*') {
             sb.deleteCharAt(sb.length() - 1);
         }
-        System.out.println(sb);
+
+        Class<?> aClass = null;
+        try {
+            aClass = Class.forName("com.taobao.arthas.core.command.monitor200.TraceCommand");
+        }catch (Exception ignore){}
+
+        System.out.println(sb + "_" + (Objects.nonNull(aClass) ? "存在.." : "不存在"));
     }
 
     public List<Integer> primeFactors(int number) {
